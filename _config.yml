@@ -13,20 +13,20 @@ baseurl: ""
 lang: en
 
 # Change to your timezone › https://kevinnovak.github.io/Time-Zone-Picker
-timezone:
+timezone: Europe/Rome
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
 title: danterolle
 
-tagline: ParrotOS Core Developer
+tagline: ParrotOS Core Developer. Network nerd.
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  A journal with strictly technical content.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: ""
+url: https://username.github.io
 
 github:
   username: danterolle # change to your github username
@@ -38,11 +38,10 @@ social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: Dario Camonita
-  email: danterolle@parrotsec.org # change to your email address
+  email: danterolle@parrotsec.org
   links:
-    # The first element serves as the copyright owner's link
-    - https://twitter.com/danterolle_ # change to your twitter homepage
-    - https://github.com/danterolle # change to your github homepage
+    - https://twitter.com/danterolle_
+    - https://github.com/danterolle
     - https://www.linkedin.com/in/dario-c-74a887149/
 
 google_site_verification: # fill in to your verification string
@@ -64,7 +63,7 @@ google_analytics:
 #     light  - Use the light color scheme
 #     dark   - Use the dark color scheme
 #
-theme_mode: dark
+theme_mode:
 
 # The CDN endpoint for images.
 # Notice that once it is assigned, the CDN url
@@ -74,7 +73,7 @@ theme_mode: dark
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: 
+avatar: './assets/avatar.webp'
 
 # boolean type, the global switch for TOC in posts.
 toc: true
