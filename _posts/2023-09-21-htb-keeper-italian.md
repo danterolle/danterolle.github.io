@@ -1,6 +1,6 @@
 ---
-title: HTB Machine - Keeper
-categories: [writeups]
+title: HTB Machine - Keeper [ITALIANO]
+categories: [writeups/walkthroughs]
 tags: [pwning, hydra, linux, burpsuite, keepass, easy]
 image:
     path: /assets/img/writeups/keeper/keeper.png
