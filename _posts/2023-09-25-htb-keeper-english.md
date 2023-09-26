@@ -55,7 +55,7 @@ In fact, if we go back to Firefox, we can finally view the website:
 
 ![Request Tracker](/assets/img/writeups/keeper/rt.png)
 
-It is presented to us as a kind of management system and, doing a brief Google search, in version 4.4.4 this [Request Tracker](https://bestpractical.com/request-tracker) is defined, by [GitHub](https://github.com/bestpractical/rt), precisely as a 
+It is presented to us as a kind of management system and, doing a brief Google search, in version 4.4.4 this [Request Tracker](https://bestpractical.com/request-tracker) is defined by [GitHub](https://github.com/bestpractical/rt), precisely as a 
 
 *"enterprise-grade issue tracking system. It allows organizations
 to keep track of what needs to get done, who is working on which tasks,
@@ -159,7 +159,7 @@ Well yes, it does appear that we have a password: **Welcome2023!**
 All that remains is to try to access the server with this data:
 
 - user: lnorgaard@keeper.htb
-- password: welcome2023!
+- password: Welcome2023!
 
 Here we go, we may have found the first flag.
 
@@ -177,9 +177,9 @@ Somehow the machine's root account needs to be accessed. There are no notable vu
 
 ![Keys](/assets/img/writeups/keeper/keys.png).
 
-Doing a brief search **KeePassDumpFull.dmp**, as the file itself suggests, appears to be a "full dump" of a KeePass database. For the uninitiated, [KeePass](https://keepass.info/) is an open source password manager useful for managing a multitude of passwords.
+Doing a brief search **KeePassDumpFull.dmp**, as the file itself suggests, appears to be a "full dump" of a KeePass database. [KeePass](https://keepass.info/) is an open source password manager useful for managing a multitude of passwords.
 
-**passcodes.kdbx** and specifically [`.kdbx`](https://keepass.info/help/kb/kdbx_4.html) is the [encrypted](https://github.com/p-h-c/phc-winner-argon2#argon2) file inside which sensitive data (usernames, passwords, notes, etc...) are stored. It uses the Argon2 password-hashing function, there is not much hope.
+**passcodes.kdbx** and specifically [`.kdbx`](https://keepass.info/help/kb/kdbx_4.html) is the [encrypted](https://github.com/p-h-c/phc-winner-argon2#argon2) file inside which sensitive data (usernames, passwords, notes, etc...) are stored. It uses the Argon2 password-hashing function, there is not much hope to crack it.
 
 The only hope (and the only clue we have) to access this file is indeed **KeePassDumpFull.dmp**. Fortunately doing another Google search I manage to find a very very interesting piece of news: it seems that in KeePass <=2.54 there is a CVE that can let me retrieve the master password from a memory dump (as in our case).
 
@@ -215,7 +215,7 @@ All that remains is to try to open **passcodes.kdbx** with this potential passwo
 sudo apt install keepassxc
 ```
 
-I try ``as it is'' and it doesn't work; I try lowercase initial letters and it goes instead!
+I try "as it is" and it doesn't work; I try lowercase initial letters and it worked!
 
 ![KeePassXC](/assets/img/writeups/keeper/keepassxc.png)
 
@@ -227,13 +227,13 @@ Looking inside the database, in the Network tab I find what I was looking for, t
 
 ![DB content](/assets/img/writeups/keeper/db-content.png).
 
-I immediately run to try it:
+I immediately run:
 
 ```bash
 ssh root@keeper.htb
 ```
 
-I enter the password "F4><3K0nd!" and... it doesn't work. It is incorrect. Something is wrong, I missed something. And, in fact, something I really missed! If I examine the "Notes" section more closely, I actually find details of what appears to be an SSH key, generated somehow by PuTTY. 
+Enter the password "F4><3K0nd!" and... it doesn't work. It is incorrect. Something is wrong, I missed something. And, in fact, something I really missed! If I examine the "Notes" section more closely, I actually find details of what appears to be an SSH key, generated somehow by PuTTY. 
 
 Reading around the web I find that [there is a tool in the PuTTY suite called PuTTYgen that allows me to create SSH keys](https://github.com/Eugeny/tabby/issues/5145).
 
@@ -275,7 +275,7 @@ cd putty-0.75/
 make puttygen
 ```
 
-And so I got my executable, `PuTTYgen v0.75`. At this point, we repeat the same step we followed just now, namely:
+And so I got my executable, `PuTTYgen v0.75`. At this point, we repeat the same step we followed just now:
 
 ```bash
 puttygen key.ppk -O private-openssh -o root.pem
@@ -289,4 +289,4 @@ That's it, we're done. We got root access and got the flag. **Keeper has been pw
 
 ## Conclusion.
 
-It took me two hours to finish this CTF. For a first (real) time, I don't think it went badly. But it was not easy. I hope it was an interesting walkthrough!
+It took me two hours to finish this CTF. For the first (real) time, I don't think it went badly. But it was not easy. I hope it was an interesting walkthrough!
