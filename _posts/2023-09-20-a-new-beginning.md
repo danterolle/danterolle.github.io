@@ -1,5 +1,5 @@
 ---
-title: A New Beginning?
+title: A New Beginning
 categories: [initial commit]
 tags: [software, ruby, linux, bash]
 ---
